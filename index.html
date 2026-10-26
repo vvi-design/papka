@@ -102,11 +102,11 @@ if (/tgWebApp/.test(location.hash)) {
 
 // ---------- Персонажи ----------
 const CH = {
-  iv:   {name:'Иван Валентинович', img:'img/iv.webp'},
-  yana: {name:'Яна Александровна', img:'img/yana.webp'},
-  dasha:{name:'Дарья Алексеевна', img:'img/dasha.webp'},
-  dio:  {name:'Диоген', img:'img/diogenes.webp', cls:'ghost'},
-  insp: {name:'Проверяющий', img:'img/inspector.webp'}
+  iv:   {name:'Иван Валентинович', img:'iv.webp'},
+  yana: {name:'Яна Александровна', img:'yana.webp'},
+  dasha:{name:'Дарья Алексеевна', img:'dasha.webp'},
+  dio:  {name:'Диоген', img:'diogenes.webp', cls:'ghost'},
+  insp: {name:'Проверяющий', img:'inspector.webp'}
 };
 
 // ---------- Сценарий ----------
@@ -282,13 +282,13 @@ const store = {
 };
 const sub = t => t.replace(/\{name\}/g, st.name);
 Object.values({...CH}).forEach(c => { const i = new Image(); i.src = c.img; });
-['bg_office','bg_corridor','bg_classroom','bg_coffee','bg_finale','cg_cat'].forEach(b => { const i = new Image(); i.src = `img/${b}.jpg`; });
+['bg_office','bg_corridor','bg_classroom','bg_coffee','bg_finale','cg_cat'].forEach(b => { const i = new Image(); i.src = `${b}.jpg`; });
 
 function showFound(){
   const f = store.get('endings') || [];
   $('found').textContent = f.length ? `Открыто концовок: ${f.length} из 3` : '3 концовки · 5–7 минут';
 }
-function setBg(name){ $('bg').style.backgroundImage = `url(img/${name}.jpg)`; }
+function setBg(name){ $('bg').style.backgroundImage = `url(${name}.jpg)`; }
 function setSprite(key){
   const sp = $('sprite');
   if (!key){ sp.classList.add('off'); sp.dataset.k = ''; return; }
@@ -307,7 +307,7 @@ function step(){
   if (s.fn){ return go(s.fn(st)); }
   if (s.cg){
     $('box').hidden = true;
-    const cg = $('cg'); cg.style.backgroundImage = `url(img/${s.cg}.jpg)`; cg.hidden = false;
+    const cg = $('cg'); cg.style.backgroundImage = `url(${s.cg}.jpg)`; cg.hidden = false;
     cg.onclick = () => { cg.hidden = true; next(); };
     return;
   }
